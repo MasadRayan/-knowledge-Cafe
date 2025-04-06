@@ -1,8 +1,8 @@
 import React from 'react';
 import { CiBookmark } from "react-icons/ci";
 
-const Blog = ({ blog }) => {
-    const { cover, title, author_img, author, posted_date, reading_time, hashtags } = blog;
+const Blog = ({ blog, handleBookmark, handleCount }) => {
+    const { id, cover, title, author_img, author, posted_date, reading_time, hashtags } = blog;
     return (
         <>
             <div className="card bg-base-100 shadow-xl mb-5 p-5">
@@ -25,9 +25,9 @@ const Blog = ({ blog }) => {
                             </div>
 
                         </div>
-                        <div className='flex justify-center items-center gap-3'>
+                        <div className='flex justify-center items-center gap-3 text-2xl'>
                             <p>{reading_time} min read</p>
-                            <button className='btn'><CiBookmark size={20} /></button>
+                            <button onClick={() => handleBookmark(blog)} className='btn btn-circle'><CiBookmark size={23} /></button>
                         </div>
                     </div>
                     <h1 className='max-w-8/12 text-5xl font-bold mb-4'>{title}</h1>
@@ -41,8 +41,8 @@ const Blog = ({ blog }) => {
                                 </p>)
                         }
                     </div>
-                    <button className="btn btn-outline btn-info max-w-fit">Mark as Read</button>
-                </div>
+                    <button onClick={() => handleCount(reading_time, id)} className="btn btn-outline btn-info max-w-fit">Mark as Read</button>
+                 </div>
             </div>
         </>
     );
